@@ -1,0 +1,12 @@
+{
+  "name": "aoc21",
+  "type": "module",
+  "dependencies": {
+    "csv-parse": "^5.0.3",
+    "jest": "^27.4.2",
+    "lodash": "^4.17.21"
+  },
+  "scripts": {
+    "test": "NODE_OPTIONS='--experimental-vm-modules --experimental-json-modules --no-warnings' jest --watch"
+  }
+}
