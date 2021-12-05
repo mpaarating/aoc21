@@ -45,42 +45,28 @@ describe('Day 2', () => {
         const calculatePosition = executeMovement(withAimCaseInstructions);
         const rawTestInput = ['forward 10'];
         const testCommandInput = separateCommandAndAmount(rawTestInput)[0];
-        const startingPosition = [3, 4];
-        const aim = 3;
-        const expected = [13, 30, 3];
-        const actual = calculatePosition(
-          startingPosition,
-          testCommandInput,
-          aim
-        );
+        const startingPosition = [3, 4, 3];
+        const expected = [13, 34, 3];
+        const actual = calculatePosition(startingPosition, testCommandInput);
         expect(actual).toEqual(expected);
       });
       it('calculates the correct position and aim for upward movement', () => {
         const calculatePosition = executeMovement(withAimCaseInstructions);
         const rawTestInput = ['up 10'];
         const testCommandInput = separateCommandAndAmount(rawTestInput)[0];
-        const startingPosition = [3, 4];
-        const aim = 3;
+        const startingPosition = [3, 4, 3];
         const expected = [3, 4, -7];
-        const actual = calculatePosition(
-          startingPosition,
-          testCommandInput,
-          aim
-        );
+        const actual = calculatePosition(startingPosition, testCommandInput);
         expect(actual).toEqual(expected);
       });
       it('calculates the correct position and aim for downward movement', () => {
         const calculatePosition = executeMovement(withAimCaseInstructions);
         const rawTestInput = ['down 10'];
         const testCommandInput = separateCommandAndAmount(rawTestInput)[0];
-        const startingPosition = [3, 4];
+        const startingPosition = [3, 4, 3];
         const aim = 3;
         const expected = [3, 4, 13];
-        const actual = calculatePosition(
-          startingPosition,
-          testCommandInput,
-          aim
-        );
+        const actual = calculatePosition(startingPosition, testCommandInput);
         expect(actual).toEqual(expected);
       });
     });
@@ -116,8 +102,14 @@ describe('Day 2', () => {
   describe('part2', () => {
     describe('TDD base case', () => {
       it('returns the product of the current position after a series of movement commands', () => {
-        const testInput = ['forward 1', 'down 2', 'forward 1'];
-        const expected = 4;
+        const testInput = [
+          'forward 3',
+          'down 4',
+          'forward 5',
+          'up 1',
+          'forward 2',
+        ];
+        const expected = 260;
         const actual = part2(testInput);
         expect(actual).toEqual(expected);
       });
@@ -125,7 +117,7 @@ describe('Day 2', () => {
 
     describe('Real input', () => {
       it('returns the product of the current position after a series of movement commands', () => {
-        const expected = 4814550;
+        const expected = 1685186100;
         const actual = part2(input);
         expect(actual).toEqual(expected);
       });
