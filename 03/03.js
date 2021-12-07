@@ -41,7 +41,47 @@ export const part1 = (input) => {
   return result;
 };
 
+const getOxygenIndex = (input) => {
+  const [zero, one] = Object.values(input);
+  return zero > one ? "0" : "1";
+}
+
+const getCo2Index = (input) => {
+  const [zero, one] = Object.values(input);
+  return zero > one ? "1" : "0";
+}
+
+const getRating = (input, getElementIndex) => {
+  let element = input;
+  let elementCounts = getBitCounts(element);
+  let columnIndex = 0;
+  const elementBitLength = element[0].length;
+  let bitResults;
+
+  while(columnIndex < elementBitLength && !bitResults) {
+    const elementCount = elementCounts[columnIndex];
+    const elementIndex = getElementIndex(elementCount);
+    element = element.filter(row => row[columnIndex] === elementIndex);
+
+    if (element.length === 1) {
+      bitResults = element[0];
+      return bitResults;
+    }
+
+    elementCounts = getBitCounts(element);
+    columnIndex++;
+  }
+
+  return bitResults;
+}
+
 export const part2 = (input) => {
-  // TODO
-  return 0;
+  const oxygen = getRating(input, getOxygenIndex);
+  const co2 = getRating(input, getCo2Index);
+
+  const oxygenRate = parseInt(oxygen, 2);
+  const co2Rate = parseInt(co2, 2);
+
+  const result = oxygenRate * co2Rate;
+  return result;
 };
